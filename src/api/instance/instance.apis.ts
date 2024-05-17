@@ -31,7 +31,7 @@ instance.interceptors.request.use(
 
       if (userId) {
         // eslint-disable-next-line no-param-reassign
-        config.headers['User-Id'] = userId; // User-Id 헤더에 설정
+        config.headers.userId = userId; // User-Id 헤더에 설정
       }
     }
 

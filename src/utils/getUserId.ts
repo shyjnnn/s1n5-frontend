@@ -1,3 +1,3 @@
 export default function getUserId(): string | null {
-  return localStorage.getItem('user_id');
+  return localStorage.getItem('userId');
 }
