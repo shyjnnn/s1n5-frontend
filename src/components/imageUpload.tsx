@@ -77,11 +77,6 @@ function ImageUpload() {
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
 
-      // Check if the selected file is a PNG image
-      if (file.type !== 'image/png') {
-        return;
-      }
-
       const result = await uploadImage(file);
 
       if (result instanceof Error) {
@@ -98,13 +93,15 @@ function ImageUpload() {
 
   return (
     <Container>
-      <InputWrapper>
-        <Input type="file" accept="image/png" onChange={handleFileChange} />
-        <StyledButton>
-          <ImageIcon src="./svg/attatch.svg" alt="Upload Icon" />
-          첨부하기
-        </StyledButton>
-      </InputWrapper>
+      {!imgUrl && (
+        <InputWrapper>
+          <Input type="file" accept="image/png" onChange={handleFileChange} />
+          <StyledButton>
+            <ImageIcon src="./svg/attatch.svg" alt="Upload Icon" />
+            첨부하기
+          </StyledButton>
+        </InputWrapper>
+      )}
 
       {imgUrl && (
         <ImagePreviewWrapper>

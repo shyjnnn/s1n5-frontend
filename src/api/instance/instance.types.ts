@@ -40,9 +40,7 @@ interface CustomAxiosInterface extends AxiosInstance {
 
 /* common */
 interface CommonResponse<T> {
-  data: {
-    data: T;
-  };
+  data: T;
   status: number;
   statusText: string;
 }

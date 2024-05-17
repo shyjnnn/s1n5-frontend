@@ -13,7 +13,7 @@ export const getRequest = async <T>(
     url,
     config as InternalAxiosRequestConfig,
   );
-  return response.data.data;
+  return response.data;
 };
 
 // /* post 요청 */
@@ -27,7 +27,7 @@ export const postRequest = async <T>(
     data,
     config as InternalAxiosRequestConfig,
   );
-  return response.data.data;
+  return response.data;
 };
 
 /* delete 요청 */
@@ -39,7 +39,7 @@ export const deleteRequest = async <T>(
     url,
     config as InternalAxiosRequestConfig,
   );
-  return response.data.data;
+  return response.data;
 };
 
 /* put 요청 */
@@ -53,7 +53,8 @@ export const putRequest = async <T>(
     data,
     config as InternalAxiosRequestConfig,
   );
-  return response.data.data;
+
+  return response.data;
 };
 
 /* patch 요청 */
@@ -67,5 +68,5 @@ export const patchRequest = async <T>(
     data,
     config as InternalAxiosRequestConfig,
   );
-  return response.data.data;
+  return response.data;
 };
