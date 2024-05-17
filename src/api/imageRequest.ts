@@ -3,6 +3,7 @@ import axios from 'axios';
 import { PresingedUrlResponse } from '@/types/image.types';
 
 import { postRequest } from './common.api';
+
 /**
  * Presigned URL 생성 api
  * 
