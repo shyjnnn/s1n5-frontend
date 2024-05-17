@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import uploadImage from '@/api/imageRequest';
@@ -47,6 +47,12 @@ const StyledButton = styled.div`
   border-radius: 8px;
   cursor: pointer;
   background: var(--warm-gray-1, #e5e3df);
+  color: var(--brown-1, #555151);
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
   gap: 10px;
 `;
 
@@ -77,9 +83,13 @@ const DeleteImgIcon = styled.img`
   cursor: pointer;
 `;
 
-function ImageUpload() {
-  const [imgUrl, setImgUrl] = useState<string | null>(null);
+interface Props {
+  imgUrl: string | null;
+  setImgUrl: (value: string | null) => void;
+}
 
+function ImageUpload(props: Props) {
+  const { imgUrl, setImgUrl } = props;
   const handleFileChange = async (
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {

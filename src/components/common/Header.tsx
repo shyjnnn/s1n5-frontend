@@ -17,12 +17,7 @@ const Header = (props: Props) => {
   return (
     <Wrapper>
       {leftIcon === 'logo' ? (
-        <Image
-          src="./svg/backspace-icon.svg"
-          width={24}
-          height={24}
-          alt="backspace"
-        />
+        <Image src="./svg/logo.svg" width={88} height={40} alt="logo" />
       ) : (
         <Image
           src="./svg/backspace-icon.svg"
@@ -67,10 +62,11 @@ const Wrapper = styled.div`
   height: 88px;
 
   .title {
-    font-size: 20px;
+    color: var(--brown-1, #555151);
+    font-size: 24px;
+    font-style: normal;
     font-weight: 700;
-    color: #1f1f1f;
-    text-align: center;
+    line-height: normal;
   }
 
   .right {

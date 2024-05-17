@@ -2,12 +2,22 @@ import styled from 'styled-components';
 
 import ContentTitle from '../common/ContentTitle';
 
-const DiaryTitle = () => {
+interface Props {
+  title: string;
+  setTitle: (value: string) => void;
+}
+
+const DiaryTitle = (props: Props) => {
+  const { title, setTitle } = props;
   return (
     <>
       <ContentTitle text="일기 제목" />
       <InputWrapper>
-        <Input />
+        <Input
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="일기 제목을 입력하세요."
+        />
       </InputWrapper>
     </>
   );

@@ -2,12 +2,22 @@ import styled from 'styled-components';
 
 import ContentTitle from '../common/ContentTitle';
 
-const DiaryContent = () => {
+interface Props {
+  diary: string;
+  setDiary: (value: string) => void;
+}
+
+const DiaryContent = (props: Props) => {
+  const { diary, setDiary } = props;
   return (
     <>
       <ContentTitle text="내용" />
       <TextareaWrapper>
-        <Textarea />
+        <Textarea
+          value={diary}
+          onChange={(e) => setDiary(e.target.value)}
+          placeholder="내용을 입력하세요."
+        />
       </TextareaWrapper>
     </>
   );
