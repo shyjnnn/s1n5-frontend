@@ -1,4 +1,4 @@
-import Image from 'next/image';
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import styled from 'styled-components';
 
 const ContentWrap = styled.div`
@@ -21,7 +21,7 @@ const Content = ({ text, img }: { text: string; img: string }) => {
     <>
       <ContentWrap>{text}</ContentWrap>
       <ImageWrap>
-        <Image src={img} alt="diary image" width={343} height={240} />
+        <img src={img} alt="diary image" />
       </ImageWrap>
     </>
   );

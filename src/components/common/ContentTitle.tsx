@@ -1,5 +1,4 @@
 /* eslint-disable react/require-default-props */
-import Image from 'next/image';
 import styled from 'styled-components';
 
 interface Props {
@@ -14,7 +13,7 @@ const ContentTitle = (props: Props) => {
     <Wrapper>
       <Title>{text}</Title>
       {!hiddenPoint && (
-        <Image
+        <img
           className="red-point"
           src="./svg/red-point-icon.svg"
           width={4}
