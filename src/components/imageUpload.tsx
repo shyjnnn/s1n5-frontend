@@ -3,10 +3,19 @@ import styled from 'styled-components';
 
 import uploadImage from '@/api/imageRequest';
 
+import ContentTitle from './common/ContentTitle';
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+`;
+
+const Wrapper = styled.div`
+  height: 84px;
+  padding: 10px 0;
+  width: 100%;
 `;
 
 const InputWrapper = styled.div`
@@ -93,26 +102,29 @@ function ImageUpload() {
 
   return (
     <Container>
-      {!imgUrl && (
-        <InputWrapper>
-          <Input type="file" accept="image/png" onChange={handleFileChange} />
-          <StyledButton>
-            <ImageIcon src="./svg/attatch.svg" alt="Upload Icon" />
-            첨부하기
-          </StyledButton>
-        </InputWrapper>
-      )}
+      <ContentTitle text="사진 및 동영상 첨부" hiddenPoint />
+      <Wrapper>
+        {!imgUrl && (
+          <InputWrapper>
+            <Input type="file" accept="image/png" onChange={handleFileChange} />
+            <StyledButton>
+              <ImageIcon src="./svg/attatch.svg" alt="Upload Icon" />
+              첨부하기
+            </StyledButton>
+          </InputWrapper>
+        )}
 
-      {imgUrl && (
-        <ImagePreviewWrapper>
-          <ImagePreview src={imgUrl} alt="Uploaded" />
-          <DeleteImgIcon
-            src="./svg/delete-icon.svg"
-            alt="Delete Icon"
-            onClick={handleDeleteImage}
-          />
-        </ImagePreviewWrapper>
-      )}
+        {imgUrl && (
+          <ImagePreviewWrapper>
+            <ImagePreview src={imgUrl} alt="Uploaded" />
+            <DeleteImgIcon
+              src="./svg/delete-icon.svg"
+              alt="Delete Icon"
+              onClick={handleDeleteImage}
+            />
+          </ImagePreviewWrapper>
+        )}
+      </Wrapper>
     </Container>
   );
 }

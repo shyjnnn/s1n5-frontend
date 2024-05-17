@@ -10,7 +10,7 @@ interface Props {
   rightOnClick?: () => void;
 }
 
-const BackspaceHeader = (props: Props) => {
+const Header = (props: Props) => {
   const router = useRouter();
   const { leftIcon, title, rightIcon, rightOnClick } = props;
 
@@ -57,7 +57,7 @@ const BackspaceHeader = (props: Props) => {
   );
 };
 
-export default BackspaceHeader;
+export default Header;
 
 const Wrapper = styled.div`
   display: grid;

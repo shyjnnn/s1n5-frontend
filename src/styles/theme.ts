@@ -5,6 +5,7 @@ export const theme = {
     brown_2: '#B7B3B3',
     warm_gray_1: '#E5E3DF',
     background: '#F2F0EE',
+    gray_1: '#8E8E93',
   },
 };
 

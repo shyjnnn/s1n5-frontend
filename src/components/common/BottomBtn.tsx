@@ -19,13 +19,15 @@ const BottomBtn = (props: Props) => {
 export default BottomBtn;
 
 const Button = styled.button`
-  width: 100%;
+  width: calc(100% - 32px);
   height: 50px;
   border-radius: 8px;
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  position: absolute;
+  bottom: 20px;
 
   &.disabled {
     color: #ffffff;
