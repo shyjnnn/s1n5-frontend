@@ -1,3 +1,5 @@
+import ImageUpload from '@/components/imageUpload';
+
 export default function Home() {
-  return <>Home</>;
+  return <ImageUpload />;
 }
