@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const Container = styled.h1`
+  padding: 12px 0 2px 0;
   color: var(--brown-1, #555151);
   font-family: Pretendard;
   font-size: 24px;

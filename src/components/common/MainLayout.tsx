@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 375px;
+  width: 343px;
   margin: 0 auto;
   padding: 0 16px;
   background-color: ${({ theme }) => theme.palette.background};

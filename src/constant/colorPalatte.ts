@@ -1,5 +1,5 @@
 export const colorPalette = {
-  제주도: {
+  제주: {
     color: '#D96817',
     background: '#F6AF7C',
   },

@@ -16,8 +16,11 @@ export interface GetDiaryResponse {
   dialectContent: string;
   dialect: string;
   images: string[];
+  createdAt: string;
+  total: number;
 }
 
 export interface GetDiariesResponse {
+  total: number;
   diaries: GetDiaryResponse[];
 }

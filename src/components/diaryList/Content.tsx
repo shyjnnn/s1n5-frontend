@@ -8,9 +8,10 @@ const ContentWrap = styled.div`
   font-style: normal;
   font-weight: 400;
   line-height: 140%; /* 22.4px */
+  padding: 10px 0;
 `;
 
-const ImageWrap = styled.div`
+const ImageWrap = styled.img`
   width: 343px;
   height: 240px;
   flex-shrink: 0;
@@ -20,9 +21,7 @@ const Content = ({ text, img }: { text: string; img: string }) => {
   return (
     <>
       <ContentWrap>{text}</ContentWrap>
-      <ImageWrap>
-        <img src={img} alt="diary image" />
-      </ImageWrap>
+      <ImageWrap src={img} alt="diary image" />
     </>
   );
 };
