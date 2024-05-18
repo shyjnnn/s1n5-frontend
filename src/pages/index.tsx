@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
@@ -103,7 +104,21 @@ export default function Home() {
               <TotalCount>일기 {diaries.total}개</TotalCount>
             </TotalCountContainer>
             {diaries.diaries.map((diary) => (
-              <div key={diary.id}>
+              // eslint-disable-next-line jsx-a11y/click-events-have-key-events
+              <div
+                key={diary.id}
+                onClick={() => {
+                  router.push(
+                    {
+                      pathname: '/detail',
+                      query: {
+                        id: diary.id,
+                      },
+                    },
+                    '/detail',
+                  );
+                }}
+              >
                 <ChipDate text={diary.dialect} date={diary.createdAt} />
                 <Title title={diary.dialect} />
                 <Content text={diary.dialectContent} img={diary.images[0]} />

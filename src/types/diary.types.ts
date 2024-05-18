@@ -6,7 +6,7 @@ export interface DiaryRequest {
 }
 
 export interface DiaryResponse {
-  id: string;
+  id: number;
 }
 
 export interface GetDiaryResponse {

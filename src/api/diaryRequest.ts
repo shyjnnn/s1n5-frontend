@@ -20,7 +20,6 @@ const postDiary = async ({
       content,
       images,
     });
-
     return response;
   } catch (error) {
     return error as Error;

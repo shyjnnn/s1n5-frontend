@@ -1,4 +1,5 @@
 import { NextPage } from 'next';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 import { postDiary } from '@/api/diaryRequest';
@@ -14,8 +15,9 @@ const Writting: NextPage = () => {
   const [title, setTitle] = useState<string>('');
   const [diary, setDiary] = useState<string>('');
   const [imgUrl, setImgUrl] = useState<string | null>(null);
+  const router = useRouter();
 
-  const handleOnClick = () => {
+  const handleOnClick = async () => {
     if (local.length === 0) return;
     if (
       local === '제주' ||
@@ -23,12 +25,23 @@ const Writting: NextPage = () => {
       local === '평양' ||
       local === '광주'
     ) {
-      postDiary({
+      const returnValue = await postDiary({
         city: local,
         title,
         content: diary,
         images: imgUrl ? [imgUrl] : [],
       });
+
+      if (returnValue instanceof Error) return;
+      router.push(
+        {
+          pathname: '/detail',
+          query: {
+            id: returnValue.id,
+          },
+        },
+        '/detail',
+      );
     }
   };
 

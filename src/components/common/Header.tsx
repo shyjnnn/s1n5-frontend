@@ -24,7 +24,7 @@ const Header = (props: Props) => {
           width={24}
           height={24}
           alt="backspace"
-          onClick={() => router.back()}
+          onClick={() => router.replace('/')}
         />
       )}
       <div className="title">{title ?? ''}</div>
