@@ -7,7 +7,7 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/:path*',
+        source: '*',
         destination: process.env.NEXT_PUBLIC_BASE_URL, // 백엔드 URL로 프록시
       },
     ];
