@@ -9,6 +9,7 @@ import LocalSetting from '@/components/common/LocalSetting';
 import ChipDate from '@/components/diaryList/ChipDate';
 import Content from '@/components/diaryList/Content';
 import CreateBtn from '@/components/diaryList/CreateBtn';
+import EmptyDiary from '@/components/diaryList/EmptyDiary';
 import Title from '@/components/diaryList/Title';
 import { GetDiariesResponse } from '@/types/diary.types';
 import getUserId from '@/utils/getUserId';
@@ -38,7 +39,6 @@ const TotalCount = styled.div`
 
 export default function Home() {
   const [diaries, setDiaries] = useState<GetDiariesResponse | null>(null);
-  const [error, setError] = useState<string | null>(null);
   const [category, setCategory] = useState<string>('전체');
 
   const router = useRouter();
@@ -53,7 +53,7 @@ export default function Home() {
           userId = response.id;
           localStorage.setItem('userId', userId);
         } else {
-          setError('Failed to create user ID');
+          /* empty */
         }
       }
     };
@@ -61,7 +61,7 @@ export default function Home() {
     const fetchDiaries = async () => {
       const response = await getDiaries();
       if (response instanceof Error) {
-        setError('Failed to load diaries');
+        /* empty */
       } else {
         setDiaries(response);
       }
@@ -70,40 +70,49 @@ export default function Home() {
     initializeUserId().then(fetchDiaries);
   }, []);
 
-  if (error) {
-    return <div>{error}</div>;
-  }
-
-  if (!diaries) {
-    return <div>Loading...</div>;
-  }
-
   const handleClick = () => {
     router.push('/writting');
   };
 
+  if (!diaries || diaries.total === 0) {
+    return (
+      <>
+        <Header leftIcon="logo" rightIcon="setting" />
+        <EmptyDiary />
+        <Container>
+          <CreateBtn onClick={handleClick} />
+        </Container>
+      </>
+    );
+  }
+
   return (
     <>
       <Header leftIcon="logo" rightIcon="setting" />
-      <LocalSetting
-        total
-        title={false}
-        local={category}
-        setLocal={setCategory}
-      />
-      <Container>
-        <TotalCountContainer>
-          <TotalCount>일기{diaries.total}개</TotalCount>
-        </TotalCountContainer>
-        {diaries.diaries.map((diary) => (
-          <div key={diary.id}>
-            <ChipDate text={diary.dialect} date={diary.createdAt} />
-            <Title title={diary.dialect} />
-            <Content text={diary.dialectContent} img={diary.images[0]} />
-          </div>
-        ))}
-        <CreateBtn onClick={handleClick} />
-      </Container>
+
+      {diaries && (
+        <>
+          <LocalSetting
+            total
+            title={false}
+            local={category}
+            setLocal={setCategory}
+          />
+          <Container>
+            <TotalCountContainer>
+              <TotalCount>일기 {diaries.total}개</TotalCount>
+            </TotalCountContainer>
+            {diaries.diaries.map((diary) => (
+              <div key={diary.id}>
+                <ChipDate text={diary.dialect} date={diary.createdAt} />
+                <Title title={diary.dialect} />
+                <Content text={diary.dialectContent} img={diary.images[0]} />
+              </div>
+            ))}
+            <CreateBtn onClick={handleClick} />
+          </Container>
+        </>
+      )}
     </>
   );
 }
