@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
@@ -53,6 +54,7 @@ const Line = styled.div`
 export default function Home() {
   const [diaries, setDiaries] = useState<GetDiariesResponse | null>(null);
   const [category, setCategory] = useState<string>('전체');
+  const [click, setClick] = useState<boolean>(false);
 
   const router = useRouter();
 
@@ -105,49 +107,54 @@ export default function Home() {
     );
   }
 
-  return (
+  return !click ? (
+    <Image
+      src="/png/onboard.png"
+      alt="onboard"
+      width={375}
+      height={852}
+      onClick={() => {
+        setClick(true);
+      }}
+    />
+  ) : (
     <>
       <Header leftIcon="logo" rightIcon="setting" />
-
-      {diaries && (
-        <>
-          <LocalSetting
-            total
-            title={false}
-            local={category}
-            setLocal={setCategory}
-          />
-          <Container>
-            <TotalCountContainer>
-              <TotalCount>일기 {diaries.total}개</TotalCount>
-            </TotalCountContainer>
-            {diaries.diaries.map((diary) => (
-              // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-              <div key={diary.id}>
-                <DiaryContent
-                  onClick={() => {
-                    router.push(
-                      {
-                        pathname: '/detail',
-                        query: {
-                          id: diary.id,
-                        },
-                      },
-                      '/detail',
-                    );
-                  }}
-                >
-                  <ChipDate text={diary.dialect} date={diary.createdAt} />
-                  <Title title={diary.dialect} />
-                  <Content text={diary.dialectContent} img={diary.images[0]} />
-                </DiaryContent>
-                <Line />
-              </div>
-            ))}
-            <CreateBtn onClick={handleClick} />
-          </Container>
-        </>
-      )}
+      <LocalSetting
+        total
+        title={false}
+        local={category}
+        setLocal={setCategory}
+      />
+      <Container>
+        <TotalCountContainer>
+          <TotalCount>일기 {diaries.total}개</TotalCount>
+        </TotalCountContainer>
+        {diaries.diaries.map((diary) => (
+          // eslint-disable-next-line jsx-a11y/click-events-have-key-events
+          <div key={diary.id}>
+            <DiaryContent
+              onClick={() => {
+                router.push(
+                  {
+                    pathname: '/detail',
+                    query: {
+                      id: diary.id,
+                    },
+                  },
+                  '/detail',
+                );
+              }}
+            >
+              <ChipDate text={diary.dialect} date={diary.createdAt} />
+              <Title title={diary.dialect} />
+              <Content text={diary.dialectContent} img={diary.images[0]} />
+            </DiaryContent>
+            <Line />
+          </div>
+        ))}
+        <CreateBtn onClick={handleClick} />
+      </Container>
     </>
   );
 }
