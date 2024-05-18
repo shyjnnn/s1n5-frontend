@@ -37,9 +37,12 @@ const getDiaryDetail = async (
   }
 };
 
-const getDiaries = async (): Promise<GetDiariesResponse | Error> => {
+const getDiaries = async (
+  dialect?: string,
+): Promise<GetDiariesResponse | Error> => {
   try {
-    const response = await getRequest<GetDiariesResponse>('/diary');
+    const url = dialect ? `/diary?dialect=${dialect}` : `/diary`;
+    const response = await getRequest<GetDiariesResponse>(url);
     return response;
   } catch (error) {
     return error as Error;

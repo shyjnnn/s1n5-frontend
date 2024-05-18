@@ -38,6 +38,18 @@ const TotalCount = styled.div`
   line-height: normal;
 `;
 
+const DiaryContent = styled.div`
+  padding: 20px 0;
+  cursor: pointer;
+`;
+
+const Line = styled.div`
+  width: 375px;
+  height: 10px;
+  background: var(--warm-gray-1, #e5e3df);
+  margin-left: -16px;
+`;
+
 export default function Home() {
   const [diaries, setDiaries] = useState<GetDiariesResponse | null>(null);
   const [category, setCategory] = useState<string>('전체');
@@ -60,7 +72,7 @@ export default function Home() {
     };
 
     const fetchDiaries = async () => {
-      const response = await getDiaries();
+      const response = await getDiaries(category);
       if (response instanceof Error) {
         /* empty */
       } else {
@@ -69,7 +81,7 @@ export default function Home() {
     };
 
     initializeUserId().then(fetchDiaries);
-  }, []);
+  }, [category]);
 
   const handleClick = () => {
     router.push('/writting');
@@ -79,6 +91,12 @@ export default function Home() {
     return (
       <>
         <Header leftIcon="logo" rightIcon="setting" />
+        <LocalSetting
+          total
+          title={false}
+          local={category}
+          setLocal={setCategory}
+        />
         <EmptyDiary />
         <Container>
           <CreateBtn onClick={handleClick} />
@@ -105,23 +123,25 @@ export default function Home() {
             </TotalCountContainer>
             {diaries.diaries.map((diary) => (
               // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-              <div
-                key={diary.id}
-                onClick={() => {
-                  router.push(
-                    {
-                      pathname: '/detail',
-                      query: {
-                        id: diary.id,
+              <div key={diary.id}>
+                <DiaryContent
+                  onClick={() => {
+                    router.push(
+                      {
+                        pathname: '/detail',
+                        query: {
+                          id: diary.id,
+                        },
                       },
-                    },
-                    '/detail',
-                  );
-                }}
-              >
-                <ChipDate text={diary.dialect} date={diary.createdAt} />
-                <Title title={diary.dialect} />
-                <Content text={diary.dialectContent} img={diary.images[0]} />
+                      '/detail',
+                    );
+                  }}
+                >
+                  <ChipDate text={diary.dialect} date={diary.createdAt} />
+                  <Title title={diary.dialect} />
+                  <Content text={diary.dialectContent} img={diary.images[0]} />
+                </DiaryContent>
+                <Line />
               </div>
             ))}
             <CreateBtn onClick={handleClick} />

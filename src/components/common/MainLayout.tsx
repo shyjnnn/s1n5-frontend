@@ -14,7 +14,8 @@ const Wrapper = styled.div`
   margin: 0 auto;
   padding: 0 16px;
   background-color: ${({ theme }) => theme.palette.background};
-  height: 852px;
+  // height: 852px;
+  min-height: 852px;
 `;
 
 export default MainLayout;
