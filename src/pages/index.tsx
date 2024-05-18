@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
@@ -54,7 +53,6 @@ const Line = styled.div`
 export default function Home() {
   const [diaries, setDiaries] = useState<GetDiariesResponse | null>(null);
   const [category, setCategory] = useState<string>('전체');
-  const [click, setClick] = useState<boolean>(false);
 
   const router = useRouter();
 
@@ -107,17 +105,7 @@ export default function Home() {
     );
   }
 
-  return !click ? (
-    <Image
-      src="/png/onboard.png"
-      alt="onboard"
-      width={375}
-      height={852}
-      onClick={() => {
-        setClick(true);
-      }}
-    />
-  ) : (
+  return (
     <>
       <Header leftIcon="logo" rightIcon="setting" />
       <LocalSetting
