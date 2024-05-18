@@ -1,13 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  swcMinify: true,
-  experimental: {
-    serverActions: true,
+  reactStrictMode: true,
+  compiler: {
+    styledComponents: true,
   },
   async rewrites() {
     return [
       {
-        source: '*',
+        source: '/:path*',
         destination: process.env.NEXT_PUBLIC_BASE_URL, // 백엔드 URL로 프록시
       },
     ];
