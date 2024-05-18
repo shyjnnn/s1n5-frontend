@@ -86,9 +86,9 @@ const SelectLocalBox = styled.div`
   display: flex;
   margin: 10px 0;
 
-  // &.withTotal {
-  //   overflow-x: scroll;
-  // }
+  &.withTotal {
+    overflow-x: scroll;
+  }
 
   &.withoutTotal {
     display: flex;
@@ -127,7 +127,7 @@ const TotalButton = styled.div`
 `;
 
 const LocalButton = styled.div`
-  width: 59px;
+  min-width: 59px;
   height: 20px;
   padding: 10px;
   font-size: 14px;

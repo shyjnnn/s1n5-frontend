@@ -59,7 +59,7 @@ const Wrapper = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
   width: 100%;
-  height: 88px;
+  min-height: 88px;
 
   .title {
     color: var(--brown-1, #555151);
