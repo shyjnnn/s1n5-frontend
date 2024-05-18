@@ -82,13 +82,13 @@ const Wrapper = styled.div`
 
 const SelectLocalBox = styled.div`
   width: 100%;
-  height: 40px;
+  // height: 40px;
   display: flex;
   margin: 10px 0;
 
-  &.withTotal {
-    overflow-x: scroll;
-  }
+  // &.withTotal {
+  //   overflow-x: scroll;
+  // }
 
   &.withoutTotal {
     display: flex;
